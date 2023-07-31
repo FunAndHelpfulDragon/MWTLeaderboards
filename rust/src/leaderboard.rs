@@ -59,7 +59,7 @@ impl LeaderboardEntry {
             username: ocr.username.clone(),
             score: ocr.score,
             difference: match old_leaderboard {
-                Some(old) => old.score - ocr.score,
+                Some(old) => ocr.score - old.score,
                 None => -1,
             },
         }
