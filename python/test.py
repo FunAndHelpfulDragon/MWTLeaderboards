@@ -6,8 +6,8 @@ from modules.is_digit import is_digit
 
 def parser():
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("picture_path")
-    arg_parser.add_argument("result_path")
+    arg_parser.add_argument("-p", "--picture", help="Path of the picture to get data out of", metavar="path", required=True)
+    arg_parser.add_argument("-r", "--result", default="results.json", help="Path of the result file.", metavar="path")
 
     return vars(arg_parser.parse_args())
 
@@ -83,6 +83,6 @@ def fix_result_and_translate(data: list) -> dict:
 args = parser()
 print(args)
 
-result = fix_result_and_translate(retrieve_data(args.get("picture_path")))
-with open(f'{args.get("result_path")}', "w+") as f:
+result = fix_result_and_translate(retrieve_data(args.get("picture")))
+with open(f'{args.get("result")}', "w+") as f:
     f.write(json.dumps(result))
